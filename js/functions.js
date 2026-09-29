@@ -37,7 +37,7 @@
     if (reduce) { t.textContent = roles[0] } else type();
 
     /* Capas de bioimpresión: líneas que se ondulan con el ratón */
-    var vis = true, run = true, cv = $("#layers"), cx = cv.getContext("2d"), W, H, mx = -999, my = -999, tt = 0;
+    var vis = true, anim = true, cv = $("#layers"), cx = cv.getContext("2d"), W, H, mx = -999, my = -999, tt = 0;
     function size() { var r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0) }
     function col(n) { var s = getComputedStyle(document.documentElement); return [s.getPropertyValue("--mauve").trim(), s.getPropertyValue("--wine").trim()] }
     function draw() {
@@ -51,13 +51,13 @@
             }
             cx.strokeStyle = i % 3 === 0 ? c[1] : c[0]; cx.globalAlpha = .16 + k * .4; cx.lineWidth = i % 3 === 0 ? 2 : 1.4; cx.stroke()
         }
-        cx.globalAlpha = 1; if (!reduce && vis) { tt += .012; requestAnimationFrame(draw) } else run = false
+        cx.globalAlpha = 1; if (!reduce && vis) { tt += .012; requestAnimationFrame(draw) } else anim = false
     }
     addEventListener("resize", function () { size(); if (reduce) draw() });
     $(".hero").addEventListener("pointermove", function (e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top });
     $(".hero").addEventListener("pointerdown", function (e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top });
     ["pointerleave", "pointerup", "pointercancel"].forEach(function (n) { $(".hero").addEventListener(n, function () { mx = my = -999 }) });
-    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis && !run && !reduce) { run = true; draw() } }).observe(cv);
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis && !anim && !reduce) { anim = true; draw() } }).observe(cv);
     size(); draw();
 
     /* Habilidades */
