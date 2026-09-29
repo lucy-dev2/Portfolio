@@ -80,14 +80,14 @@
         contacto: "luciagomez2300@gmail.com · 673 81 60 62 · Plasencia, Cáceres"
     };
     function log(t, c) { var d = document.createElement("div"); if (c) d.className = c; d.textContent = t; out.appendChild(d); out.scrollTop = out.scrollHeight }
-    function run(v) {
+    function ejecutar(v) {
         v = v.trim().toLowerCase(); if (!v) return; log("$ " + v, "cmd");
         if (v === "limpiar") { out.textContent = ""; return }
         log(C[v] || "Comando no encontrado: " + v + ". Escribe «ayuda» para ver la lista.")
     }
     log("Hola, soy la terminal de Lucía. Escribe «ayuda».");
-    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { run(inp.value); inp.value = "" } });
-    $$(".hints button").forEach(function (b) { b.onclick = function () { run(b.textContent) } });
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { ejecutar(inp.value); inp.value = "" } });
+    $$(".hints button").forEach(function (b) { b.onclick = function () { ejecutar(b.textContent) } });
 
     /* Barra de progreso de scroll */
     addEventListener("scroll", function () { var h = document.documentElement; $("#bar").style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%" }, { passive: true });
