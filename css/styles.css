@@ -58,6 +58,9 @@ body {
     
 }
 
+.icono img{
+    margin-top: 10px;
+}
 
 .change {
     color: var(--bg);
