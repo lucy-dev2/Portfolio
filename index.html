@@ -23,13 +23,12 @@
         aria-expanded="false" aria-controls="menu">☰</button>
     </div>
   </nav>
-
   <header class="hero">
     <canvas id="layers" aria-hidden="true"></canvas>
     <div class="wrap">
       <div>
-        <h1>Lucía Elizo Gómez</h1>
-        <p class="role">Desarrolladora de aplicaciones multiplataforma <br>que <span class="typed" id="typed"></span>
+        <h1 class="change">Lucía Elizo Gómez</h1>
+        <p class="role change">Desarrolladora de aplicaciones multiplataforma <br>que <span class="typed" id="typed"></span>
         </p>
         <p class="lead">Estudio Desarrollo de Aplicaciones Multiplataforma en Plasencia y busco unas primeras prácticas
           o un primer empleo como programadora. Trabajo con Java, Python, MySQL y Docker.</p>
@@ -190,6 +189,11 @@
   </section>
 
   <footer>© 2026 Lucía Elizo Gómez · Plasencia, Cáceres</footer>
+  <div id="pet-wrap"><span class="zz" aria-hidden="true">💤</span>
+    <div id="pet-bubble" role="status"><button id="pet-x" aria-label="Cerrar mensaje">×</button>
+      <p id="pet-msg"></p>
+    </div>
+    <button id="pet-btn" aria-label="Mochi, la gatita mascota. Pulsa para acariciarla, doble clic para que te siga"><svg viewBox="0 0 120 130" aria-hidden="true"><g id="pet-tail"><path class="cl" d="M86 114Q124 112 114 76Q110 60 96 68" stroke-width="13" fill="none" stroke-linecap="round"/><path class="cfs" d="M86 114Q124 112 114 76Q110 60 96 68" stroke-width="8.5" fill="none" stroke-linecap="round"/></g><ellipse class="cf cl" cx="60" cy="104" rx="34" ry="26" stroke-width="2.5"/><ellipse class="cb" cx="60" cy="110" rx="17" ry="15"/><path class="cf cl" d="M30 52L26 18L52 34Z M90 52L94 18L68 34Z" stroke-width="2.5" stroke-linejoin="round"/><path class="ce" d="M32 44L30 28L44 36Z M88 44L90 28L76 36Z"/><circle class="cf cl" cx="60" cy="62" r="34" stroke-width="2.5"/><g class="pet-eye"><ellipse class="cl" cx="45" cy="64" rx="9.5" ry="11.5" fill="#fff" stroke-width="2"/><g class="pup"><ellipse class="ci" cx="45" cy="65" rx="6.5" ry="8.5"/><ellipse cx="45" cy="65" rx="3.4" ry="6" fill="#1b0c38"/><circle cx="42.5" cy="60.5" r="2.6" fill="#fff"/></g></g><g class="pet-eye"><ellipse class="cl" cx="75" cy="64" rx="9.5" ry="11.5" fill="#fff" stroke-width="2"/><g class="pup"><ellipse class="ci" cx="75" cy="65" rx="6.5" ry="8.5"/><ellipse cx="75" cy="65" rx="3.4" ry="6" fill="#1b0c38"/><circle cx="72.5" cy="60.5" r="2.6" fill="#fff"/></g></g><ellipse cx="36" cy="77" rx="6" ry="3.6" fill="#ff8fb8" opacity=".6"/><ellipse cx="84" cy="77" rx="6" ry="3.6" fill="#ff8fb8" opacity=".6"/><path d="M57 75H63L60 79Z" fill="#ff8fb8"/><path class="cl" d="M60 79Q55 85 50 81M60 79Q65 85 70 81" stroke-width="2" fill="none" stroke-linecap="round"/><path class="cw" d="M30 76L14 73M30 80L14 83M90 76L106 73M90 80L106 83" stroke-width="1.5" stroke-linecap="round"/><ellipse class="cf cl" cx="46" cy="124" rx="11" ry="6" stroke-width="2"/><ellipse class="cf cl" cx="74" cy="124" rx="11" ry="6" stroke-width="2"/></svg></button></div>
   <div id="toast" role="status">Email copiado</div>
 
   <script src="./js/functions.js"></script>
