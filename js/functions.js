@@ -27,7 +27,7 @@
     }
 
     /* Texto animado */
-    var roles = ["programa en Java y Python", "despliega en Linux y Docker", "automatiza procesos", "aprende rápido"], ri = 0, ci = 0, del = false, t = $("#typed");
+    var roles = ["Programación en Java, Python y Kotlin", "HTML · CSS · JavaScript", "Automatización de procesos", "Bases de Datos"], ri = 0, ci = 0, del = false, t = $("#typed");
     function type() {
         var w = roles[ri]; t.textContent = w.slice(0, ci);
         if (!del && ci === w.length) { del = true; return setTimeout(type, 1400) }
@@ -453,7 +453,7 @@
 })();
 
     /* Habilidades */
-    var S = [["HTML", "code", 1], ["CSS", "code", 1], ["Java", "code", 1], ["Python", "code", 1], ["MySQL", "data", 1], ["Git", "tools", 1], ["GitHub", "tools", 1], ["Docker", "tools", 1], ["Adaptabilidad", "soft"], ["Trabajo en equipo", "soft"], ["Resolución de problemas", "soft"], ["Autoaprendizaje", "soft"], ["Pensamiento analítico-creativo", "soft"], ["Atención al detalle", "soft"], ["Autogestión", "soft"]];
+    var S = [["HTML", "code", 1], ["CSS", "code", 1], ["JavaScript", "code", 1], ["Kotlin (Jetpack Compose)", "code", 1], ["Java", "code", 1], ["Python", "code", 1], ["MySQL", "data", 1], ["Git (GitHub)", "tools", 1], ["Android Studio", "tools", 1], ["VirtualBox", "tools", 1], ["Visual Studio", "tools", 1], ["Docker", "tools", 1], ["Adaptabilidad", "soft"], ["Eclipse", "tools", 1], ["Trabajo en equipo", "soft"], ["NetBeans", "tools", 1], ["Resolución de problemas", "soft"], ["Autoaprendizaje", "soft"], ["Multifuncional", "soft"], ["Pensamiento analítico-creativo", "soft"], ["Atención al detalle", "soft"], ["Autogestión", "soft"]];
     function render(f) { var box = $("#skills"); box.textContent = ""; S.filter(function (s) { return f === "all" || s[1] === f }).forEach(function (s, i) { var e = document.createElement("span"); e.className = "sk" + (s[2] ? " hard" : ""); e.textContent = s[0]; e.style.animationDelay = (i * 30) + "ms"; box.appendChild(e) }) }
     $$(".chip").forEach(function (b) { b.onclick = function () { $$(".chip").forEach(function (x) { x.setAttribute("aria-pressed", "false") }); b.setAttribute("aria-pressed", "true"); render(b.dataset.f) } });
     render("all");
@@ -463,21 +463,28 @@
 
     /* Terminal */
     var out = $("#out"), inp = $("#cmd"), C = {
-        ayuda: "Comandos: sobre, skills, proyecto, estudios, idiomas, contacto, limpiar",
-        sobre: "Lucía Elizo Gómez, desarrolladora de aplicaciones multiplataforma. Trabajadora, positiva y con ganas de aprender en cada proyecto.",
-        skills: "Lenguajes: HTML, CSS, Java, Python\nBase de datos: MySQL\nHerramientas: Git, GitHub, Docker",
-        proyecto: "Kadi4Mat: gestión de metadatos de bioimpresora 3D en Linux, con plugin de automatización. CASEIB 2026.",
-        estudios: "DAM (IES Valle del Jerte, en curso), Bachillerato nocturno (2022–2024), Grado Medio en Electromecánica (2019–2020).",
-        idiomas: "Español nativo, inglés avanzado (B1 oficial), francés principiante, japonés en desarrollo.",
-        contacto: "luciagomez2300@gmail.com · 673 81 60 62 · Plasencia, Cáceres"
+        ayuda: "Comandos: sobre, skills, proyecto, estudios, idiomas, contacto, clear",
+        sobre: `¡Lucía también rescata animales siempre que puede 🐾! ¡Ya lleva más de 50! y colabora con asociaciones como <a href="https://www.instagram.com/cerplasencia/" target="_blank">@cerplasencia</a>. Si te interesa tener un compañero fiel de por vida como yo, quizás deberías echar un vistazo a <a href="https://www.instagram.com/cerplasencia/" target="_blank">@cerplasencia</a> y a <a href="https://www.instagram.com/el_refugio_de_plasencia/" target="_blank">la protectora de Plasencia</a>, o incluso en <a href="https://www.instagram.com/adoptaextremadura/" target="_blank">@adoptaextremadura</a> 🐱🐶.`,
+        skills: "Lucía no se limita al código 😼. También juega al fútbol⚽, ha hecho skate🛹, yo creo que simplemente no sabe estarse quieta. Y además se pasa bastante tiempo imaginando historias. No sé de dónde saca el tiempo, pero básicamente, si puede aprender, crear o meterse en algo nuevo, ahí estará 😹.",
+        proyecto: "Lucía tiene pensado llenar esta sección con muuuchos proyectos propios originales y creativos, pero de momento no hay ninguno. ¡Esperemos que pronto haya novedades✨!",
+        estudios: "Por si tenías curiosidad, Lucía siempre ha querido aprender de todo. Ha pasado del griego y latín 🏛️ al dibujo, diseño gráfico y marketing🎨, y después a mecánica🔧, antes de acabar entre líneas de código 💻. Parece que estaba buscando su sitio... y creo que por fin lo ha encontrado 😸.",
+        idiomas: "Lucía habla español y estudia inglés desde que tiene memoria ¡incluso estuvo un mes en Bournemouth, Inglaterra! Además también está aprendiendo japonés. ¿Su método? Duolingo y mucho anime. Mochi considera que una combinación de app + dibujos animados japoneses es una técnica de estudio perfectamente válida😼",
+        contacto: "¿Quieres hablar con Lucía? 📩 Aquí tienes sus datos. Yo le avisaré de que has venido... a cambio de un premio, claro 🐱 luciagomez2300@gmail.com · 673 81 60 62 · Plasencia, Cáceres"
     };
-    function log(t, c) { var d = document.createElement("div"); if (c) d.className = c; d.textContent = t; out.appendChild(d); out.scrollTop = out.scrollHeight }
-    function ejecutar(v) {
-        v = v.trim().toLowerCase(); if (!v) return; log("$ " + v, "cmd");
-        if (v === "limpiar") { out.textContent = ""; return }
-        log(C[v] || "Comando no encontrado: " + v + ". Escribe «ayuda» para ver la lista.")
-    }
-    log("Hola, soy la terminal de Lucía. Escribe «ayuda».");
+    function log(t, c, html) {
+    var d = document.createElement("div");
+    if (c) d.className = c;
+    if (html) d.innerHTML = t; else d.textContent = t;
+    out.appendChild(d); out.scrollTop = out.scrollHeight;
+}
+function ejecutar(v) {
+    v = v.trim().toLowerCase(); if (!v) return;
+    log("$ " + v, "cmd");                     
+    if (v === "clear") { out.textContent = ""; return }
+    if (C.hasOwnProperty(v)) log(C[v], "", true);  
+    else log("Comando no encontrado: " + v + ". Escribe «ayuda» para ver la lista.");
+}
+    log("Hola, soy la terminal de Mochi. Escribe «ayuda».");
     inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { ejecutar(inp.value); inp.value = "" } });
     $$(".hints button").forEach(function (b) { b.onclick = function () { ejecutar(b.textContent) } });
 
@@ -528,7 +535,7 @@
     var pw = $("#pet-wrap"), pb = $("#pet-btn"), bub = $("#pet-bubble"), pm = $("#pet-msg"), pups = $$("#pet-btn .pup"), ptm = 0, poff = false, ti = 0;
     var pX = Math.max(10, innerWidth - 80), pY = Math.max(80, innerHeight - 90), tX = pX, tY = pY, pMode = "sit", pUntil = 0, pDrag = null, pLast = 0, pDir = 1, pClick = 0, mX = 0, mY = 0;
     var tips = ["¡Prrr! 💜 Gracias por la caricia.", "Arrástrame y cámbiame de sitio 🐾", "Haz doble clic y voy a por tu puntero 🐭", "Truco: prueba el código Konami (↑ ↑ ↓ ↓ ← → ← → B A).", "¿Has probado a jugar a «Salva al gatito»?", "Lucía busca prácticas o su primer empleo como programadora."];
-    var MSG = { sobre: "Aquí conoces a Lucía: trabajadora, positiva y con ganas de aprender.", proyecto: "Kadi4Mat: su proyecto con una bioimpresora 3D. ¡Se presenta en CASEIB 2026!", experiencia: "Prácticas en el CCMI Jesús Usón y un curso en BMW Ceres Motor.", habilidades: "Pulsa los filtros para ver sus lenguajes y herramientas.", formacion: "Ahora estudia DAM en el IES Valle del Jerte.", juego: "¡Ayúdame! Que no me pillen los bugs 🐛", terminal: "Escribe «ayuda» en la terminal y te cuento más.", contacto: "¿Hablamos? Lucía busca prácticas o su primer empleo." };
+    var MSG = { sobre: "Aquí conoces a Lucía: trabajadora, positiva y con ganas de aprender.", proyecto: "Kadi4Mat: su proyecto con una impresora 3D. ¡Se presenta en CASEIB 2026!", experiencia: "Prácticas en el CCMI Jesús Usón y un curso en BMW Ceres Motor.", habilidades: "Pulsa los filtros para ver sus lenguajes y herramientas.", formacion: "Ahora estudia DAM en el IES Valle del Jerte.", juego: "¡Ayúdame! Que no me pillen los bugs 🐛", terminal: "Escribe «ayuda» en mi terminal y te cuento más.", contacto: "¿Hablamos? Lucía busca prácticas o su primer empleo." };
     function say(t, ms) { var left = pX < innerWidth / 2; bub.style.left = left ? "0" : "auto"; bub.style.right = left ? "auto" : "0"; pm.textContent = t; bub.classList.add("show"); clearTimeout(ptm); ptm = setTimeout(function () { bub.classList.remove("show") }, ms || 7000) }
     function mode(m, ms) { pMode = m; pUntil = performance.now() + ms; pw.classList.toggle("walk", m === "walk" || m === "follow"); pw.classList.toggle("sleep", m === "sleep") }
     function pick() { tX = 8 + Math.random() * Math.max(10, innerWidth - 74); tY = 80 + Math.random() * Math.max(10, innerHeight - 160) }
